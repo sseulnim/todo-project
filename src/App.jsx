@@ -10,11 +10,12 @@ function ToDo(props) {
   const isDone = props.cardIsDone;
 
   return (
-    <div className=" bg-red-400">
+    <div className=" bg-yellow-100">
       <p>상태: {isDone === true ? "완료" : "진행중"}</p>
       <p>{title}</p>
       <p>{body}</p>
       <button
+        className=" bg-green-400"
         onClick={() => {
           setToDos(
             toDos.map((toDo) => {
@@ -30,6 +31,7 @@ function ToDo(props) {
         완료
       </button>
       <button
+        className=" bg-red-400"
         onClick={() => {
           setToDos(() => {
             return toDos.filter((toDo) => {
@@ -51,11 +53,10 @@ function App() {
   const [title, setTitle] = useState("");
   const [body, setBody] = useState("");
   const [toDos, setToDos] = useState([]);
-  console.log(toDos);
 
   return (
-    <>
-      <form>
+    <div className="container max-w-screen-lg mx-auto p-4">
+      <form className="mb-4">
         <input
           onChange={(event) => {
             const text = event.target.value;
@@ -91,7 +92,7 @@ function App() {
       </form>
 
       <h2 className="text-4xl">진행중</h2>
-      <div className="flex">
+      <div className="flex flex-wrap">
         {toDos
           .filter((toDo) => {
             if (toDo.isDone === false) {
@@ -117,7 +118,7 @@ function App() {
           })}
       </div>
       <h2 className="text-4xl">완료</h2>
-      <div className="flex">
+      <div className="flex flex-wrap">
         {toDos
           .filter((toDo) => {
             if (toDo.isDone === true) {
@@ -142,7 +143,7 @@ function App() {
             );
           })}
       </div>
-    </>
+    </div>
   );
 }
 
